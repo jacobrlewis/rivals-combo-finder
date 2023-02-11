@@ -23,6 +23,8 @@ After:
 
 <img src="img/after.png" width="600" height="600">
 
+3 replays on this page were found to have quick stocks!
+
 # Known issues
 
 * Self-Destructs are a common source of false-positives
@@ -31,7 +33,7 @@ After:
 
 # Explanation
 
-Line 8 of Rivals replays now include the frames that a character died on.
+Line 9 of Rivals replays now include the frames that a character died on.
 
 ex:
 

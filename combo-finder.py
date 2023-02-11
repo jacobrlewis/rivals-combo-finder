@@ -17,7 +17,7 @@ def main():
 
         contents = ''
         with open(os.path.join(REPLAYS, name)) as f:
-            # read line 8, exclude first (match duration) and last (newline/whitespace)
+            # read line 9, exclude first (match duration) and last (newline/whitespace)
             nums = f.readlines()[8].split(',')[1:-1]
 
             players = {}
