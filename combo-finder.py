@@ -2,6 +2,7 @@ import os
 
 # replay directory
 REPLAYS = os.path.expanduser("~") + '/AppData/Local/RivalsofAether/replays'
+# REPLAYS = os.path.curdir + '/tmp'
 
 # interval in frames (60 fps)
 INTERVAL = 15 * 60
@@ -15,10 +16,21 @@ def main():
         if not name.endswith(".roa"):
             continue
 
-        contents = ''
+        contents: str = ''
         with open(os.path.join(REPLAYS, name)) as f:
+            try:
+                lines = f.readlines()
+            except UnicodeDecodeError as e: 
+                print(f"{name} error while decoding unicode")
+                print(e.reason)
+                continue
+
+            if len(lines) < 9:
+                print(f"{name} missing lines")
+                continue
+
             # read line 9, exclude first (match duration) and last (newline/whitespace)
-            nums = f.readlines()[8].split(',')[1:-1]
+            nums = lines[8].split(',')[1:-1]
 
             players = {}
 
@@ -43,7 +55,7 @@ def main():
                 w.write('1' + contents)
 
     print(stars)
-    print(f'{len(stars)} replays found')
+    print(f'{len(stars)} replays starred')
 
 if __name__ == '__main__':
     main()
